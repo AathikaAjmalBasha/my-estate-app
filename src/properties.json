@@ -1,0 +1,102 @@
+{
+    "properties": [
+      {
+        "id": "prop1",
+        "type": "House",
+        "bedrooms": 3,
+        "price": 750000,
+        "tenure": "Freehold",
+        "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland.",
+        "location": "Petts Wood Road, Petts Wood, Orpington BR5",
+        "picture": "images/prop1pic1small.jpg",
+        "added": { 
+            "month": "October", 
+            "day": 12, 
+            "year": 2022 }
+      },
+      {
+        "id": "prop2",
+        "type": "Flat",
+        "bedrooms": 2,
+        "price": 399995,
+        "tenure": "Leasehold",
+        "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat with a private courtyard.",
+        "location": "Crofton Road Orpington BR6",
+        "picture": "images/prop2pic1small.jpg",
+        "added": { 
+            "month": "September", 
+            "day": 14, 
+            "year": 2022 }
+      },
+      {
+        "id": "prop3",
+        "type": "House",
+        "bedrooms": 5,
+        "price": 1250000,
+        "tenure": "Freehold",
+        "description": "Stunning 5-bedroom detached luxury home with a massive garden, modern kitchen, and off-street parking for 3 cars.",
+        "location": "Park Lane, London W1",
+        "picture": "images/prop3pic1small.jpg",
+        "added": { 
+            "month": "January", 
+            "day": 5, 
+            "year": 2024 }
+      },
+      {
+        "id": "prop4",
+        "type": "Flat",
+        "bedrooms": 1,
+        "price": 275000,
+        "tenure": "Leasehold",
+        "description": "Cozy studio flat perfect for first-time buyers. Located right next to the tube station with great city views.",
+        "location": "Camden High Street, London NW1",
+        "picture": "images/prop4pic1small.jpg",
+        "added": { 
+            "month": "May", 
+            "day": 20, 
+            "year": 2024 }
+      },
+      {
+        "id": "prop5",
+        "type": "House",
+        "bedrooms": 4,
+        "price": 850000,
+        "tenure": "Freehold",
+        "description": "A beautiful Victorian terrace house with original features, high ceilings, and a renovated basement.",
+        "location": "Greenwich High Road, London SE10",
+        "picture": "images/prop5pic1small.jpg",
+        "added": { 
+            "month": "August", 
+            "day": 10, 
+            "year": 2024 }
+      },
+      {
+        "id": "prop6",
+        "type": "Flat",
+        "bedrooms": 3,
+        "price": 600000,
+        "tenure": "Leasehold",
+        "description": "Spacious penthouse apartment with a wraparound balcony and concierge service.",
+        "location": "Canary Wharf, London E14",
+        "picture": "images/prop6pic1small.jpg",
+        "added": { 
+            "month": "November", 
+            "day": 30, 
+            "year": 2024 }
+      },
+      {
+        "id": "prop7",
+        "type": "House",
+        "bedrooms": 2,
+        "price": 450000,
+        "tenure": "Freehold",
+        "description": "Charming 2-bedroom cottage in a quiet cul-de-sac. Features a wood-burning stove and a south-facing garden.",
+        "location": "Richmond Road, London TW9",
+        "picture": "images/prop7pic1small.jpg",
+        "added": { 
+            "month": "December", 
+            "day": 15, 
+            "year": 2024 }
+      }
+    ]
+  }
