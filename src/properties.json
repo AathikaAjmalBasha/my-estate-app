@@ -7,8 +7,23 @@
         "price": 750000,
         "tenure": "Freehold",
         "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland.",
+        "longDescription": "This charming three-bedroom semi-detached family home offers the perfect blend of comfort and convenience. Located in the desirable area of Petts Wood, this property is ideally situated within 0.5 miles of Petts Wood station, providing excellent transport links to London with frequent fast trains. The property features a welcoming entrance hallway leading to a spacious living room with a bay window that floods the room with natural light. The modern kitchen is fully equipped with integrated appliances and offers access to a well-maintained rear garden, perfect for family gatherings and outdoor dining. Upstairs, you'll find three well-proportioned bedrooms, with the master bedroom benefiting from built-in wardrobes. The family bathroom has been recently updated with contemporary fixtures. The rear garden is a particular highlight, offering a private and secure space for children to play. The property also benefits from off-street parking and is within walking distance of excellent local schools, shops, and the beautiful National Trust woodland, making it an ideal family home in a sought-after location.",
         "location": "Petts Wood Road, Petts Wood, Orpington BR5",
         "picture": "images/prop1pic1small.jpg",
+        "images": [
+          "images/prop1pic1small.jpg",
+          "images/prop1pic1small.jpg",
+          "images/prop1pic1small.jpg",
+          "images/prop1pic1small.jpg",
+          "images/prop1pic1small.jpg",
+          "images/prop1pic1small.jpg",
+          "images/prop1pic1small.jpg"
+        ],
+        "floorPlan": "images/prop1pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.3886,
+          "lng": 0.0744
+        },
         "added": { 
             "month": "October", 
             "day": 12, 
@@ -21,8 +36,23 @@
         "price": 399995,
         "tenure": "Leasehold",
         "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat with a private courtyard.",
+        "longDescription": "This stunning two-bedroom garden flat has been beautifully presented and maintained to an exceptionally high standard. Located on Crofton Road in Orpington, the property offers modern living in a convenient location. The flat features a bright and airy open-plan living space that flows seamlessly into a well-appointed kitchen area, perfect for entertaining. Both bedrooms are generous double rooms, with the master bedroom featuring an en-suite bathroom for added convenience. The family bathroom is elegantly designed with high-quality fixtures and fittings. One of the property's standout features is the private courtyard garden, providing a tranquil outdoor space for relaxation and alfresco dining. The property benefits from excellent local amenities, including shops, restaurants, and transport links. With its contemporary styling and attention to detail, this flat represents an excellent opportunity for those seeking a move-in-ready home in a desirable location.",
         "location": "Crofton Road Orpington BR6",
         "picture": "images/prop2pic1small.jpg",
+        "images": [
+          "images/prop2pic1small.jpg",
+          "images/prop2pic1small.jpg",
+          "images/prop2pic1small.jpg",
+          "images/prop2pic1small.jpg",
+          "images/prop2pic1small.jpg",
+          "images/prop2pic1small.jpg",
+          "images/prop2pic1small.jpg"
+        ],
+        "floorPlan": "images/prop2pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.3833,
+          "lng": 0.0833
+        },
         "added": { 
             "month": "September", 
             "day": 14, 
@@ -35,8 +65,24 @@
         "price": 1250000,
         "tenure": "Freehold",
         "description": "Stunning 5-bedroom detached luxury home with a massive garden, modern kitchen, and off-street parking for 3 cars.",
+        "longDescription": "This exceptional five-bedroom detached luxury home on Park Lane represents the pinnacle of sophisticated city living. Set in one of London's most prestigious addresses, this property offers an extraordinary combination of elegance, space, and modern luxury. The grand entrance hall sets the tone for the entire property, leading to a magnificent reception room with floor-to-ceiling windows and bespoke finishes. The state-of-the-art kitchen is a chef's dream, featuring premium appliances, marble worktops, and a large central island, seamlessly flowing into a dining area and family room. The ground floor also includes a study, guest cloakroom, and utility room. Upstairs, the master suite is a true sanctuary, complete with a luxurious en-suite bathroom and walk-in wardrobe. Four further bedrooms are equally impressive, with two benefiting from en-suite facilities. The property's crowning glory is the expansive rear garden, a rare find in central London, offering a private oasis for entertaining and relaxation. Additional features include off-street parking for three cars, a home office, and a wine cellar. This is a once-in-a-lifetime opportunity to own a piece of London's prime real estate.",
         "location": "Park Lane, London W1",
         "picture": "images/prop3pic1small.jpg",
+        "images": [
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg",
+          "images/prop3pic1small.jpg"
+        ],
+        "floorPlan": "images/prop3pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.5074,
+          "lng": -0.1478
+        },
         "added": { 
             "month": "January", 
             "day": 5, 
@@ -49,8 +95,22 @@
         "price": 275000,
         "tenure": "Leasehold",
         "description": "Cozy studio flat perfect for first-time buyers. Located right next to the tube station with great city views.",
+        "longDescription": "This charming studio flat on Camden High Street offers an excellent opportunity for first-time buyers or investors looking to enter the London property market. The property's prime location is unbeatable, situated directly next to Camden Town tube station, providing effortless access to the entire London transport network. The studio has been cleverly designed to maximise space, featuring a modern kitchenette with integrated appliances, a comfortable sleeping area, and a well-appointed bathroom. Large windows flood the space with natural light and offer impressive views across the city skyline. The property is presented in excellent condition and benefits from being in one of London's most vibrant and culturally rich areas, with Camden Market, numerous restaurants, cafes, and entertainment venues right on your doorstep. This is an ideal starter home for those seeking the excitement of city living with convenient transport links and a thriving local community.",
         "location": "Camden High Street, London NW1",
         "picture": "images/prop4pic1small.jpg",
+        "images": [
+          "images/prop4pic1small.jpg",
+          "images/prop4pic1small.jpg",
+          "images/prop4pic1small.jpg",
+          "images/prop4pic1small.jpg",
+          "images/prop4pic1small.jpg",
+          "images/prop4pic1small.jpg"
+        ],
+        "floorPlan": "images/prop4pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.5394,
+          "lng": -0.1434
+        },
         "added": { 
             "month": "May", 
             "day": 20, 
@@ -63,8 +123,24 @@
         "price": 850000,
         "tenure": "Freehold",
         "description": "A beautiful Victorian terrace house with original features, high ceilings, and a renovated basement.",
+        "longDescription": "This magnificent Victorian terrace house on Greenwich High Road perfectly combines period character with modern living. Built in the late 19th century, the property retains many original features including ornate cornices, fireplaces, and high ceilings, creating a sense of grandeur and space throughout. The ground floor features a welcoming hallway leading to a spacious reception room with bay windows and period fireplace, perfect for formal entertaining. The modern kitchen has been thoughtfully designed to complement the property's character while providing all the conveniences of contemporary living. A beautifully renovated basement provides additional flexible living space, ideal for a home office, playroom, or entertainment area. The first floor offers three well-proportioned bedrooms and a family bathroom, while the second floor houses the master bedroom with en-suite facilities. The property benefits from a private rear garden and is located in the heart of Greenwich, one of London's most desirable areas, with excellent schools, transport links, and the renowned Greenwich Park nearby. This is a rare opportunity to own a piece of London's architectural heritage.",
         "location": "Greenwich High Road, London SE10",
         "picture": "images/prop5pic1small.jpg",
+        "images": [
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg",
+          "images/prop5pic1small.jpg"
+        ],
+        "floorPlan": "images/prop5pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.4780,
+          "lng": -0.0015
+        },
         "added": { 
             "month": "August", 
             "day": 10, 
@@ -77,8 +153,24 @@
         "price": 600000,
         "tenure": "Leasehold",
         "description": "Spacious penthouse apartment with a wraparound balcony and concierge service.",
+        "longDescription": "Experience luxury living in this exceptional penthouse apartment in the heart of Canary Wharf. This stunning three-bedroom property occupies the top floor of a prestigious development, offering breathtaking panoramic views across London's skyline and the River Thames. The apartment features an impressive open-plan living space with floor-to-ceiling windows that flood every room with natural light. The contemporary kitchen is fitted with premium appliances and provides the perfect space for entertaining. All three bedrooms are generously proportioned, with the master suite featuring an en-suite bathroom and access to the wraparound balcony. The highlight of this property is undoubtedly the expansive wraparound balcony, offering multiple outdoor spaces to enjoy al fresco dining while taking in the spectacular city views. Residents benefit from 24-hour concierge service, secure parking, and access to the building's exclusive leisure facilities. Canary Wharf offers world-class shopping, dining, and entertainment, all within walking distance, making this the perfect urban retreat for those seeking luxury city living.",
         "location": "Canary Wharf, London E14",
         "picture": "images/prop6pic1small.jpg",
+        "images": [
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg",
+          "images/prop6pic1small.jpg"
+        ],
+        "floorPlan": "images/prop6pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.5045,
+          "lng": -0.0195
+        },
         "added": { 
             "month": "November", 
             "day": 30, 
@@ -91,8 +183,23 @@
         "price": 450000,
         "tenure": "Freehold",
         "description": "Charming 2-bedroom cottage in a quiet cul-de-sac. Features a wood-burning stove and a south-facing garden.",
+        "longDescription": "This delightful two-bedroom cottage on Richmond Road offers idyllic living in a peaceful cul-de-sac location. The property exudes character and charm, with its welcoming exterior and thoughtfully designed interior. The ground floor features a cosy living room with a beautiful wood-burning stove, creating a warm and inviting atmosphere perfect for relaxing evenings. The kitchen is well-appointed and leads to a conservatory that provides additional dining space and access to the garden. Upstairs, two comfortable bedrooms and a family bathroom complete the accommodation. The property's standout feature is the stunning south-facing garden, which benefits from all-day sunshine and offers a perfect space for gardening, entertaining, or simply enjoying the outdoors. The quiet cul-de-sac location ensures privacy and tranquillity, while still being within easy reach of Richmond's excellent amenities, including shops, restaurants, and transport links. This charming cottage represents an excellent opportunity to own a characterful home in one of London's most desirable residential areas.",
         "location": "Richmond Road, London TW9",
         "picture": "images/prop7pic1small.jpg",
+        "images": [
+          "images/prop7pic1small.jpg",
+          "images/prop7pic1small.jpg",
+          "images/prop7pic1small.jpg",
+          "images/prop7pic1small.jpg",
+          "images/prop7pic1small.jpg",
+          "images/prop7pic1small.jpg",
+          "images/prop7pic1small.jpg"
+        ],
+        "floorPlan": "images/prop7pic1small.jpg",
+        "mapCoordinates": {
+          "lat": 51.4613,
+          "lng": -0.3036
+        },
         "added": { 
             "month": "December", 
             "day": 15, 
