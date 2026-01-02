@@ -32,7 +32,7 @@ const FavoritesPage = () => {
 
   return (
     <div className="search-container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="favorites-page-header">
         <h1>My Saved Homes</h1>
         {favorites.length > 0 && (
           <button onClick={clearAll} className="clear-btn">Clear All</button>
@@ -40,11 +40,12 @@ const FavoritesPage = () => {
       </div>
 
       {favorites.length === 0 ? (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-          <p>You haven't saved any properties yet.</p>
+        <div className="no-favorites-state">
+          <p className="no-favorites-title">You haven't saved any properties yet.</p>
+          <p className="no-favorites-subtitle">Start searching and save your favorite properties!</p>
           <Link to="/">
-            <button className="view-details-btn" style={{ width: 'auto', padding: '10px 20px' }}>
-              Go Search for Homes
+            <button className="view-details-btn go-search-btn">
+              🔍 Go Search for Homes
             </button>
           </Link>
         </div>
@@ -52,10 +53,13 @@ const FavoritesPage = () => {
         <div className="results-grid">
           {favorites.map(prop => (
             <div key={prop.id} className="property-card">
-              <img src={prop.picture} alt={prop.type} />
+              <Link to={`/property/${prop.id}`} className="property-card-link">
+                <img src={prop.picture} alt={prop.type} />
+              </Link>
               <div className="card-content">
                 <h3>£{prop.price.toLocaleString()}</h3>
-                <p>{prop.location}</p>
+                <p className="property-location">{prop.location}</p>
+                {prop.description && <p className="property-description">{prop.description}</p>}
                 
                 <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                   <Link to={`/property/${prop.id}`} style={{ flex: 1 }}>

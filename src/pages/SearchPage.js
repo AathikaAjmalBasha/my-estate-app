@@ -91,6 +91,7 @@ function SearchPage() {
   );
   const [draggedProperty, setDraggedProperty] = useState(null);
   const [dragFromFavorites, setDragFromFavorites] = useState(false);
+  const [filtersExpanded, setFiltersExpanded] = useState(false);
 
   // 3. Toggle Favorite Logic
   const toggleFavorite = (prop) => {
@@ -220,162 +221,175 @@ function SearchPage() {
     >
       <div className="search-main-content">
         <h2>Search Properties</h2>
-      <form className="search-box" onSubmit={handleSearch}>
-        <div className="search-filters">
-          <div className="filter-group">
-            <label htmlFor="postcode-search">Postcode Area</label>
+        
+        {/* Main Search Bar */}
+        <form className="main-search-box" onSubmit={handleSearch}>
+          <div className="main-search-input-wrapper">
             <input
               id="postcode-search"
               type="text"
-              placeholder="e.g. BR, NW, SE (or BR5, NW1)"
+              placeholder="Enter postcode area (e.g. BR, NW, SE, BR5, NW1)"
               value={criteria.postcodeArea}
               onChange={(e) => setCriteria({...criteria, postcodeArea: e.target.value.toUpperCase()})}
-              className="search-input"
+              className="main-search-input"
               pattern="[A-Za-z]{1,2}[0-9]{0,2}"
               maxLength="5"
-              title="Enter postcode area code (e.g., BR, NW, SE) - shows all properties in that area"
             />
-          </div>
-
-          <div className="filter-group">
-            <label htmlFor="type-filter">Type</label>
-            <DropdownList
-              id="type-filter"
-              data={["Any", "House", "Flat"]}
-              value={criteria.type}
-              onChange={val => setCriteria({...criteria, type: val})}
-              className="filter-dropdown"
-              aria-label="Property type"
-            />
-          </div>
-
-          <div className="filter-group price-group">
-            <label htmlFor="price-range">Price Range (£)</label>
-            <div className="price-range-container">
-              <div className="price-range-display">
-                <span className="price-range-min">£{criteria.minPrice.toLocaleString()}</span>
-                <span className="price-range-separator">-</span>
-                <span className="price-range-max">£{criteria.maxPrice.toLocaleString()}</span>
-              </div>
-              <div className="price-range-slider-wrapper">
-                <input
-                  type="range"
-                  id="price-range-min"
-                  min={minPriceFromData}
-                  max={maxPriceFromData}
-                  value={criteria.minPrice}
-                  onChange={(e) => {
-                    const newMinPrice = parseInt(e.target.value);
-                    setCriteria({
-                      ...criteria,
-                      minPrice: newMinPrice,
-                      maxPrice: newMinPrice > criteria.maxPrice ? maxPriceFromData : criteria.maxPrice
-                    });
-                  }}
-                  className="price-range-slider price-range-slider-min"
-                  aria-label="Minimum price"
-                />
-                <input
-                  type="range"
-                  id="price-range-max"
-                  min={minPriceFromData}
-                  max={maxPriceFromData}
-                  value={criteria.maxPrice}
-                  onChange={(e) => {
-                    const newMaxPrice = parseInt(e.target.value);
-                    setCriteria({
-                      ...criteria,
-                      maxPrice: newMaxPrice,
-                      minPrice: newMaxPrice < criteria.minPrice ? minPriceFromData : criteria.minPrice
-                    });
-                  }}
-                  className="price-range-slider price-range-slider-max"
-                  aria-label="Maximum price"
-                />
-                <div 
-                  className="price-range-progress"
-                  style={{
-                    left: `${((criteria.minPrice - minPriceFromData) / (maxPriceFromData - minPriceFromData)) * 100}%`,
-                    width: `${((criteria.maxPrice - criteria.minPrice) / (maxPriceFromData - minPriceFromData)) * 100}%`
-                  }}
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="filter-group bedrooms-group">
-            <label htmlFor="bedrooms-min">Bedrooms</label>
-            <div className="bedrooms-inputs">
-              <NumberPicker 
-                id="bedrooms-min"
-                placeholder="Min"
-                value={criteria.minBedrooms}
-                onChange={val => setCriteria({...criteria, minBedrooms: val || 0})}
-                className="bedrooms-input"
-                min={0}
-                max={10}
-                aria-label="Minimum bedrooms"
-              />
-              <span className="bedrooms-separator" aria-hidden="true">to</span>
-              <NumberPicker 
-                id="bedrooms-max"
-                placeholder="Max"
-                value={criteria.maxBedrooms}
-                onChange={val => setCriteria({...criteria, maxBedrooms: val || 10})}
-                className="bedrooms-input"
-                min={0}
-                max={10}
-                aria-label="Maximum bedrooms"
-              />
-            </div>
-          </div>
-
-          <div className="filter-group date-group">
-            <label htmlFor="date-mode">Date Added</label>
-            <DropdownList
-              id="date-mode"
-              data={["After", "Between"]}
-              value={criteria.dateMode === "after" ? "After" : "Between"}
-              onChange={val => {
-                const mode = val === "After" ? "after" : "between";
-                setCriteria({...criteria, dateMode: mode, dateTo: mode === "after" ? "" : criteria.dateTo});
-              }}
-              className="date-mode-select"
-              aria-label="Date filter mode"
-            />
-            <div className="date-inputs">
-              <DateTimePicker
-                value={criteria.dateFrom ? new Date(criteria.dateFrom) : null}
-                onChange={date => setCriteria({...criteria, dateFrom: date ? date.toISOString().split('T')[0] : ""})}
-                placeholder="Select date"
-                calendarOnly
-                aria-label="Date from"
-                className="date-picker"
-              />
-              {criteria.dateMode === "between" && (
-                <>
-                  <span className="date-separator" aria-hidden="true">to</span>
-                  <DateTimePicker
-                    value={criteria.dateTo ? new Date(criteria.dateTo) : null}
-                    onChange={date => setCriteria({...criteria, dateTo: date ? date.toISOString().split('T')[0] : ""})}
-                    placeholder="Select date"
-                    min={criteria.dateFrom ? new Date(criteria.dateFrom) : undefined}
-                    calendarOnly
-                    aria-label="Date to"
-                    className="date-picker"
-                  />
-                </>
-              )}
-            </div>
-          </div>
-
-          <div className="filter-group search-button-group">
-            <button type="submit" className="search-button" aria-label="Search properties">
+            <button type="submit" className="main-search-button" aria-label="Search properties">
+              <span>🔍</span>
               Search
             </button>
           </div>
-        </div>
-      </form>
+          
+          {/* Expandable Filters */}
+          <button
+            type="button"
+            className="filters-toggle"
+            onClick={() => setFiltersExpanded(!filtersExpanded)}
+            aria-expanded={filtersExpanded}
+          >
+            <span>{filtersExpanded ? '▲' : '▼'}</span>
+            {filtersExpanded ? 'Hide Filters' : 'Show Filters'}
+          </button>
+
+          {filtersExpanded && (
+            <div className="expanded-filters">
+              <div className="filters-grid">
+                <div className="filter-group">
+                  <label htmlFor="type-filter">Property Type</label>
+                  <DropdownList
+                    id="type-filter"
+                    data={["Any", "House", "Flat"]}
+                    value={criteria.type}
+                    onChange={val => setCriteria({...criteria, type: val})}
+                    className="filter-dropdown"
+                    aria-label="Property type"
+                  />
+                </div>
+
+                <div className="filter-group price-group">
+                  <label htmlFor="price-range">Price Range (£)</label>
+                  <div className="price-range-container">
+                    <div className="price-range-display">
+                      <span className="price-range-min">£{criteria.minPrice.toLocaleString()}</span>
+                      <span className="price-range-separator">-</span>
+                      <span className="price-range-max">£{criteria.maxPrice.toLocaleString()}</span>
+                    </div>
+                    <div className="price-range-slider-wrapper">
+                      <input
+                        type="range"
+                        id="price-range-min"
+                        min={minPriceFromData}
+                        max={maxPriceFromData}
+                        value={criteria.minPrice}
+                        onChange={(e) => {
+                          const newMinPrice = parseInt(e.target.value);
+                          setCriteria({
+                            ...criteria,
+                            minPrice: newMinPrice,
+                            maxPrice: newMinPrice > criteria.maxPrice ? maxPriceFromData : criteria.maxPrice
+                          });
+                        }}
+                        className="price-range-slider price-range-slider-min"
+                        aria-label="Minimum price"
+                      />
+                      <input
+                        type="range"
+                        id="price-range-max"
+                        min={minPriceFromData}
+                        max={maxPriceFromData}
+                        value={criteria.maxPrice}
+                        onChange={(e) => {
+                          const newMaxPrice = parseInt(e.target.value);
+                          setCriteria({
+                            ...criteria,
+                            maxPrice: newMaxPrice,
+                            minPrice: newMaxPrice < criteria.minPrice ? minPriceFromData : criteria.minPrice
+                          });
+                        }}
+                        className="price-range-slider price-range-slider-max"
+                        aria-label="Maximum price"
+                      />
+                      <div 
+                        className="price-range-progress"
+                        style={{
+                          left: `${((criteria.minPrice - minPriceFromData) / (maxPriceFromData - minPriceFromData)) * 100}%`,
+                          width: `${((criteria.maxPrice - criteria.minPrice) / (maxPriceFromData - minPriceFromData)) * 100}%`
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="filter-group bedrooms-group">
+                  <label htmlFor="bedrooms-min">Bedrooms</label>
+                  <div className="bedrooms-inputs">
+                    <NumberPicker 
+                      id="bedrooms-min"
+                      placeholder="Min"
+                      value={criteria.minBedrooms}
+                      onChange={val => setCriteria({...criteria, minBedrooms: val || 0})}
+                      className="bedrooms-input"
+                      min={0}
+                      max={10}
+                      aria-label="Minimum bedrooms"
+                    />
+                    <span className="bedrooms-separator" aria-hidden="true">to</span>
+                    <NumberPicker 
+                      id="bedrooms-max"
+                      placeholder="Max"
+                      value={criteria.maxBedrooms}
+                      onChange={val => setCriteria({...criteria, maxBedrooms: val || 10})}
+                      className="bedrooms-input"
+                      min={0}
+                      max={10}
+                      aria-label="Maximum bedrooms"
+                    />
+                  </div>
+                </div>
+
+                <div className="filter-group date-group">
+                  <label htmlFor="date-mode">Date Added</label>
+                  <DropdownList
+                    id="date-mode"
+                    data={["After", "Between"]}
+                    value={criteria.dateMode === "after" ? "After" : "Between"}
+                    onChange={val => {
+                      const mode = val === "After" ? "after" : "between";
+                      setCriteria({...criteria, dateMode: mode, dateTo: mode === "after" ? "" : criteria.dateTo});
+                    }}
+                    className="date-mode-select"
+                    aria-label="Date filter mode"
+                  />
+                  <div className="date-inputs">
+                    <DateTimePicker
+                      value={criteria.dateFrom ? new Date(criteria.dateFrom) : null}
+                      onChange={date => setCriteria({...criteria, dateFrom: date ? date.toISOString().split('T')[0] : ""})}
+                      placeholder="Select date"
+                      calendarOnly
+                      aria-label="Date from"
+                      className="date-picker"
+                    />
+                    {criteria.dateMode === "between" && (
+                      <>
+                        <span className="date-separator" aria-hidden="true">to</span>
+                        <DateTimePicker
+                          value={criteria.dateTo ? new Date(criteria.dateTo) : null}
+                          onChange={date => setCriteria({...criteria, dateTo: date ? date.toISOString().split('T')[0] : ""})}
+                          placeholder="Select date"
+                          min={criteria.dateFrom ? new Date(criteria.dateFrom) : undefined}
+                          calendarOnly
+                          aria-label="Date to"
+                          className="date-picker"
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </form>
 
       <section className="results-grid">
         {filteredProperties.length === 0 ? (
