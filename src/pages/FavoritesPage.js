@@ -31,7 +31,7 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div className="search-container">
+    <div className="favorites-page-container">
       <div className="favorites-page-header">
         <h1>My Saved Homes</h1>
         {favorites.length > 0 && (
