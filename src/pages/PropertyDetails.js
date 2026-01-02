@@ -32,6 +32,7 @@ const PropertyDetails = () => {
     JSON.parse(localStorage.getItem('favs')) || []
   );
   const [draggedProperty, setDraggedProperty] = useState(null);
+  const [dragFromFavorites, setDragFromFavorites] = useState(false);
 
   // Update main image when property changes
   useEffect(() => {
@@ -64,8 +65,9 @@ const PropertyDetails = () => {
   };
 
   // Handle drag start
-  const handleDragStart = (e, prop) => {
+  const handleDragStart = (e, prop, fromFavorites = false) => {
     setDraggedProperty(prop);
+    setDragFromFavorites(fromFavorites);
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', prop.id);
   };
@@ -79,12 +81,35 @@ const PropertyDetails = () => {
   // Handle drop to favorites
   const handleDropToFavorites = (e) => {
     e.preventDefault();
-    if (draggedProperty && !favorites.some(fav => fav.id === draggedProperty.id)) {
-      const updatedFavorites = [...favorites, draggedProperty];
+    if (draggedProperty) {
+      // Only add if not already in favorites (if dragging from outside)
+      if (!dragFromFavorites && !favorites.some(fav => fav.id === draggedProperty.id)) {
+        const updatedFavorites = [...favorites, draggedProperty];
+        setFavorites(updatedFavorites);
+        localStorage.setItem('favs', JSON.stringify(updatedFavorites));
+      }
+    }
+    setDraggedProperty(null);
+    setDragFromFavorites(false);
+  };
+
+  // Handle drop outside favorites (remove from favorites)
+  const handleDropOutside = (e) => {
+    e.preventDefault();
+    if (draggedProperty && dragFromFavorites) {
+      // Remove from favorites
+      const updatedFavorites = favorites.filter(item => item.id !== draggedProperty.id);
       setFavorites(updatedFavorites);
       localStorage.setItem('favs', JSON.stringify(updatedFavorites));
     }
     setDraggedProperty(null);
+    setDragFromFavorites(false);
+  };
+
+  // Handle drag end
+  const handleDragEnd = () => {
+    setDraggedProperty(null);
+    setDragFromFavorites(false);
   };
 
   // Remove from favorites
@@ -149,7 +174,11 @@ const PropertyDetails = () => {
   const propertyImages = property.images || [property.picture];
 
   return (
-    <div className="property-details-container">
+    <div 
+      className={`property-details-container ${dragFromFavorites ? 'dragging-from-favorites' : ''}`}
+      onDragOver={handleDragOver}
+      onDrop={handleDropOutside}
+    >
       <div className="property-details-main">
         {/* Header with price and basic info */}
         <div className="property-header">
@@ -177,6 +206,7 @@ const PropertyDetails = () => {
             className="main-image-container"
             onClick={() => openLightbox(0)}
             onDragStart={(e) => handleDragStart(e, property)}
+            onDragEnd={handleDragEnd}
             draggable
             role="button"
             tabIndex={0}
@@ -205,6 +235,7 @@ const PropertyDetails = () => {
                 }}
                 className={mainImage === img ? 'active' : ''}
                 onDragStart={(e) => handleDragStart(e, property)}
+                onDragEnd={handleDragEnd}
                 draggable
               />
             ))}
@@ -246,20 +277,27 @@ const PropertyDetails = () => {
               <div className="tab-content">
                 <h3>Location Map</h3>
                 <div className="map-container">
-                  {property.mapCoordinates ? (
-                    <iframe
-                      title={`Map showing ${escapeHtml(property.location)}`}
-                      width="100%"
-                      height="450"
-                      style={{ border: 0 }}
-                      loading="lazy"
-                      allowFullScreen
-                      referrerPolicy="no-referrer-when-downgrade"
-                      src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${property.mapCoordinates.lat},${property.mapCoordinates.lng}&zoom=15`}
-                    ></iframe>
-                  ) : (
-                    <p>Map data not available</p>
-                  )}
+                  <iframe
+                    title={`Map showing ${escapeHtml(property.location)}`}
+                    width="100%"
+                    height="450"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(property.location)}&output=embed`}
+                  ></iframe>
+                  <div className="map-fallback">
+                    <p>
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.location)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View {escapeHtml(property.location)} on Google Maps
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </TabPanel>
@@ -269,8 +307,12 @@ const PropertyDetails = () => {
 
       {/* Favorites Sidebar */}
       <aside 
-        className="favorites-sidebar"
-        onDragOver={handleDragOver}
+        className={`favorites-sidebar ${draggedProperty && !dragFromFavorites ? 'drag-over' : ''}`}
+        onDragOver={(e) => {
+          if (!dragFromFavorites) {
+            handleDragOver(e);
+          }
+        }}
         onDrop={handleDropToFavorites}
       >
         <div className="favorites-header">
@@ -292,9 +334,10 @@ const PropertyDetails = () => {
             favorites.map((fav) => (
               <div 
                 key={fav.id} 
-                className="favorite-item"
+                className={`favorite-item ${draggedProperty?.id === fav.id && dragFromFavorites ? 'dragging' : ''}`}
                 draggable
-                onDragStart={(e) => handleDragStart(e, fav)}
+                onDragStart={(e) => handleDragStart(e, fav, true)}
+                onDragEnd={handleDragEnd}
               >
                 <Link to={`/property/${fav.id}`} className="favorite-link">
                   <img src={fav.picture} alt={escapeHtml(fav.location)} />

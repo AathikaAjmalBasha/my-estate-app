@@ -5,6 +5,19 @@ import "react-widgets/styles.css";
 import { Link } from 'react-router-dom';
 import '../index.css';
 
+// HTML encoding function for security
+const escapeHtml = (text) => {
+  if (!text) return '';
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return String(text).replace(/[&<>"']/g, m => map[m]);
+};
+
 // Utility function to extract postcode area code (e.g., BR, NW, SE, W) from location string
 const extractPostcodeArea = (location) => {
   if (!location) return null;
@@ -76,6 +89,8 @@ function SearchPage() {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem('favs')) || []
   );
+  const [draggedProperty, setDraggedProperty] = useState(null);
+  const [dragFromFavorites, setDragFromFavorites] = useState(false);
 
   // 3. Toggle Favorite Logic
   const toggleFavorite = (prop) => {
@@ -90,6 +105,65 @@ function SearchPage() {
 
     localStorage.setItem('favs', JSON.stringify(updatedFavorites));
     setFavorites(updatedFavorites);
+  };
+
+  // Drag and Drop Handlers
+  const handleDragStart = (e, prop, fromFavorites = false) => {
+    setDraggedProperty(prop);
+    setDragFromFavorites(fromFavorites);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', prop.id);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDropToFavorites = (e) => {
+    e.preventDefault();
+    if (draggedProperty) {
+      // Only add if not already in favorites (if dragging from outside)
+      if (!dragFromFavorites && !favorites.some(fav => fav.id === draggedProperty.id)) {
+        const updatedFavorites = [...favorites, draggedProperty];
+        setFavorites(updatedFavorites);
+        localStorage.setItem('favs', JSON.stringify(updatedFavorites));
+      }
+    }
+    setDraggedProperty(null);
+    setDragFromFavorites(false);
+  };
+
+  const handleDropOutside = (e) => {
+    e.preventDefault();
+    if (draggedProperty && dragFromFavorites) {
+      // Remove from favorites
+      const updatedFavorites = favorites.filter(item => item.id !== draggedProperty.id);
+      setFavorites(updatedFavorites);
+      localStorage.setItem('favs', JSON.stringify(updatedFavorites));
+    }
+    setDraggedProperty(null);
+    setDragFromFavorites(false);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedProperty(null);
+    setDragFromFavorites(false);
+  };
+
+  // Remove from favorites
+  const removeFavorite = (propId) => {
+    const updatedFavorites = favorites.filter(item => item.id !== propId);
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favs', JSON.stringify(updatedFavorites));
+  };
+
+  // Clear all favorites
+  const clearFavorites = () => {
+    if (window.confirm('Are you sure you want to clear all favorites?')) {
+      setFavorites([]);
+      localStorage.removeItem('favs');
+    }
   };
 
   // 4. Handle Search Button Click
@@ -139,8 +213,13 @@ function SearchPage() {
   });
 
   return (
-    <div className="search-container">
-      <h2>Search Properties</h2>
+    <div 
+      className={`search-container ${dragFromFavorites ? 'dragging-from-favorites' : ''}`}
+      onDragOver={handleDragOver}
+      onDrop={handleDropOutside}
+    >
+      <div className="search-main-content">
+        <h2>Search Properties</h2>
       <form className="search-box" onSubmit={handleSearch}>
         <div className="search-filters">
           <div className="filter-group">
@@ -312,7 +391,13 @@ function SearchPage() {
             return (
               <div key={prop.id} className="property-card">
                 <Link to={`/property/${prop.id}`} className="property-card-link">
-                  <img src={prop.picture} alt={`${prop.type} in ${prop.location}`} />
+                  <img 
+                    src={prop.picture} 
+                    alt={`${prop.type} in ${prop.location}`}
+                    onDragStart={(e) => handleDragStart(e, prop, false)}
+                    onDragEnd={handleDragEnd}
+                    draggable
+                  />
                 </Link>
                 <div className="card-content">
                   <h3>£{prop.price.toLocaleString()}</h3>
@@ -343,6 +428,64 @@ function SearchPage() {
           </>
         )}
       </section>
+      </div>
+
+      {/* Favorites Sidebar */}
+      <aside 
+        className={`favorites-sidebar ${draggedProperty && !dragFromFavorites ? 'drag-over' : ''}`}
+        onDragOver={(e) => {
+          if (!dragFromFavorites) {
+            handleDragOver(e);
+          }
+        }}
+        onDrop={handleDropToFavorites}
+      >
+        <div className="favorites-header">
+          <h3>My Favorites</h3>
+          {favorites.length > 0 && (
+            <button 
+              onClick={clearFavorites}
+              className="clear-favorites-btn"
+              aria-label="Clear all favorites"
+            >
+              Clear All
+            </button>
+          )}
+        </div>
+        <div className="favorites-list">
+          {favorites.length === 0 ? (
+            <p className="no-favorites">Drag properties here or use the save button to add favorites</p>
+          ) : (
+            favorites.map((fav) => (
+              <div 
+                key={fav.id} 
+                className={`favorite-item ${draggedProperty?.id === fav.id && dragFromFavorites ? 'dragging' : ''}`}
+                draggable
+                onDragStart={(e) => handleDragStart(e, fav, true)}
+                onDragEnd={handleDragEnd}
+              >
+                <Link to={`/property/${fav.id}`} className="favorite-link">
+                  <img src={fav.picture} alt={escapeHtml(fav.location)} />
+                  <div className="favorite-info">
+                    <strong>£{fav.price.toLocaleString()}</strong>
+                    <p>{escapeHtml(fav.location)}</p>
+                  </div>
+                </Link>
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    removeFavorite(fav.id);
+                  }}
+                  className="remove-favorite-btn"
+                  aria-label={`Remove ${escapeHtml(fav.location)} from favorites`}
+                >
+                  ×
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+      </aside>
     </div>
   );
 }
