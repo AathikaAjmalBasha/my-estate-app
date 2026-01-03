@@ -324,27 +324,91 @@ function SearchPage() {
                 <div className="filter-group bedrooms-group">
                   <label htmlFor="bedrooms-min">Bedrooms</label>
                   <div className="bedrooms-inputs">
-                    <NumberPicker 
-                      id="bedrooms-min"
-                      placeholder="Min"
-                      value={criteria.minBedrooms}
-                      onChange={val => setCriteria({...criteria, minBedrooms: val || 0})}
-                      className="bedrooms-input"
-                      min={0}
-                      max={10}
-                      aria-label="Minimum bedrooms"
-                    />
+                    <div className="number-picker-wrapper">
+                      <NumberPicker 
+                        id="bedrooms-min"
+                        placeholder="Min"
+                        value={criteria.minBedrooms}
+                        onChange={val => {
+                          const newValue = val !== null && val !== undefined ? val : 0;
+                          setCriteria({...criteria, minBedrooms: newValue});
+                        }}
+                        className="bedrooms-input"
+                        min={0}
+                        max={10}
+                        step={1}
+                        aria-label="Minimum bedrooms"
+                      />
+                      <div className="number-picker-arrows">
+                        <button
+                          type="button"
+                          className="arrow-btn arrow-up"
+                          onClick={() => {
+                            if (criteria.minBedrooms < 10) {
+                              setCriteria({...criteria, minBedrooms: criteria.minBedrooms + 1});
+                            }
+                          }}
+                          aria-label="Increase minimum bedrooms"
+                        >
+                          ▲
+                        </button>
+                        <button
+                          type="button"
+                          className="arrow-btn arrow-down"
+                          onClick={() => {
+                            if (criteria.minBedrooms > 0) {
+                              setCriteria({...criteria, minBedrooms: criteria.minBedrooms - 1});
+                            }
+                          }}
+                          aria-label="Decrease minimum bedrooms"
+                        >
+                          ▼
+                        </button>
+                      </div>
+                    </div>
                     <span className="bedrooms-separator" aria-hidden="true">to</span>
-                    <NumberPicker 
-                      id="bedrooms-max"
-                      placeholder="Max"
-                      value={criteria.maxBedrooms}
-                      onChange={val => setCriteria({...criteria, maxBedrooms: val || 10})}
-                      className="bedrooms-input"
-                      min={0}
-                      max={10}
-                      aria-label="Maximum bedrooms"
-                    />
+                    <div className="number-picker-wrapper">
+                      <NumberPicker 
+                        id="bedrooms-max"
+                        placeholder="Max"
+                        value={criteria.maxBedrooms}
+                        onChange={val => {
+                          const newValue = val !== null && val !== undefined ? val : 10;
+                          setCriteria({...criteria, maxBedrooms: newValue});
+                        }}
+                        className="bedrooms-input"
+                        min={0}
+                        max={10}
+                        step={1}
+                        aria-label="Maximum bedrooms"
+                      />
+                      <div className="number-picker-arrows">
+                        <button
+                          type="button"
+                          className="arrow-btn arrow-up"
+                          onClick={() => {
+                            if (criteria.maxBedrooms < 10) {
+                              setCriteria({...criteria, maxBedrooms: criteria.maxBedrooms + 1});
+                            }
+                          }}
+                          aria-label="Increase maximum bedrooms"
+                        >
+                          ▲
+                        </button>
+                        <button
+                          type="button"
+                          className="arrow-btn arrow-down"
+                          onClick={() => {
+                            if (criteria.maxBedrooms > 0) {
+                              setCriteria({...criteria, maxBedrooms: criteria.maxBedrooms - 1});
+                            }
+                          }}
+                          aria-label="Decrease maximum bedrooms"
+                        >
+                          ▼
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

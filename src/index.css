@@ -353,6 +353,53 @@ h1, h2, h3 {
   flex: 1;
 }
 
+.number-picker-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.number-picker-arrows {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 0.6rem;
+  color: #5c4033;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  transition: color 0.2s ease;
+  width: 18px;
+  height: 12px;
+}
+
+.arrow-btn:hover {
+  color: #8b6f5e;
+}
+
+.arrow-btn:active {
+  color: #2c1810;
+}
+
+.arrow-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 /* React Widgets NumberPicker styling */
 .rw-number-picker {
   width: 100%;
@@ -361,7 +408,7 @@ h1, h2, h3 {
 .rw-number-picker input {
   border: 2px solid #e0e0e0;
   border-radius: 6px;
-  padding: 10px 15px;
+  padding: 10px 30px 10px 15px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
