@@ -25,7 +25,6 @@ const PropertyDetails = () => {
   const property = propertiesData.properties.find(p => p.id === id);
 
   // Combine main picture with images array, ensuring main picture is first
-  // Add leading slash for proper public folder path resolution
   const propertyImages = property 
     ? [property.picture, ...(property.images || [])]
         .filter(Boolean)
@@ -351,7 +350,7 @@ const PropertyDetails = () => {
                 onDragEnd={handleDragEnd}
               >
                 <Link to={`/property/${fav.id}`} className="favorite-link">
-                  <img src={fav.picture} alt={escapeHtml(fav.location)} />
+                  <img src={fav.picture ? (fav.picture.startsWith('/') ? fav.picture : `/${fav.picture}`) : ''} alt={escapeHtml(fav.location)} />
                   <div className="favorite-info">
                     <strong>£{fav.price.toLocaleString()}</strong>
                     <p>{escapeHtml(fav.location)}</p>
