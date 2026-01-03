@@ -11,15 +11,15 @@
         "location": "Petts Wood Road, Petts Wood, Orpington BR5",
         "picture": "images/prop1pic1small.jpg",
         "images": [
-          "images/prop1pic1small.jpg",
-          "images/prop1pic1small.jpg",
-          "images/prop1pic1small.jpg",
-          "images/prop1pic1small.jpg",
-          "images/prop1pic1small.jpg",
-          "images/prop1pic1small.jpg",
-          "images/prop1pic1small.jpg"
+          "images/prop1pic2small.jpg",
+          "images/prop1pic3small.jpg",
+          "images/prop1pic4small.jpg",
+          "images/prop1pic5small.jpg",
+          "images/prop1pic6small.jpg",
+          "images/prop1pic7small.jpg",
+          "images/prop1pic8small.jpg"
         ],
-        "floorPlan": "images/prop1pic1small.jpg",
+        "floorPlan": "images/prop1pic9small.jpg",
         "mapCoordinates": {
           "lat": 51.3886,
           "lng": 0.0744
@@ -40,15 +40,15 @@
         "location": "Crofton Road Orpington BR6",
         "picture": "images/prop2pic1small.jpg",
         "images": [
-          "images/prop2pic1small.jpg",
-          "images/prop2pic1small.jpg",
-          "images/prop2pic1small.jpg",
-          "images/prop2pic1small.jpg",
-          "images/prop2pic1small.jpg",
-          "images/prop2pic1small.jpg",
-          "images/prop2pic1small.jpg"
+          "images/prop2pic2small.jpg",
+          "images/prop2pic3small.jpg",
+          "images/prop2pic4small.jpg",
+          "images/prop2pic5small.jpg",
+          "images/prop2pic6small.jpg",
+          "images/prop2pic7small.jpg",
+          "images/prop2pic8small.jpg"
         ],
-        "floorPlan": "images/prop2pic1small.jpg",
+        "floorPlan": "images/prop2pic9small.jpg",
         "mapCoordinates": {
           "lat": 51.3833,
           "lng": 0.0833
@@ -69,16 +69,16 @@
         "location": "Park Lane, London W1",
         "picture": "images/prop3pic1small.jpg",
         "images": [
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg",
-          "images/prop3pic1small.jpg"
+          "images/prop3pic2small.jpg",
+          "images/prop3pic3small.jpg",
+          "images/prop3pic4small.jpg",
+          "images/prop3pic5small.jpg",
+          "images/prop3pic6small.jpg",
+          "images/prop3pic7small.jpg",
+          "images/prop3pic8small.jpg",
+          "images/prop3pic9small.jpg"
         ],
-        "floorPlan": "images/prop3pic1small.jpg",
+        "floorPlan": "images/prop3pic10small.jpg",
         "mapCoordinates": {
           "lat": 51.5074,
           "lng": -0.1478
@@ -99,14 +99,14 @@
         "location": "Camden High Street, London NW1",
         "picture": "images/prop4pic1small.jpg",
         "images": [
-          "images/prop4pic1small.jpg",
-          "images/prop4pic1small.jpg",
-          "images/prop4pic1small.jpg",
-          "images/prop4pic1small.jpg",
-          "images/prop4pic1small.jpg",
-          "images/prop4pic1small.jpg"
+          "images/prop4pic2small.jpg",
+          "images/prop4pic3small.jpg",
+          "images/prop4pic4small.jpg",
+          "images/prop4pic5small.jpg",
+          "images/prop4pic6small.jpg",
+          "images/prop4pic7small.jpg"
         ],
-        "floorPlan": "images/prop4pic1small.jpg",
+        "floorPlan": "images/prop4pic8small.jpg",
         "mapCoordinates": {
           "lat": 51.5394,
           "lng": -0.1434
@@ -127,16 +127,16 @@
         "location": "Greenwich High Road, London SE10",
         "picture": "images/prop5pic1small.jpg",
         "images": [
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg",
-          "images/prop5pic1small.jpg"
+          "images/prop5pic2small.jpg",
+          "images/prop5pic3small.jpg",
+          "images/prop5pic4small.jpg",
+          "images/prop5pic5small.jpg",
+          "images/prop5pic6small.jpg",
+          "images/prop5pic7small.jpg",
+          "images/prop5pic8small.jpg",
+          "images/prop5pic9small.jpg"
         ],
-        "floorPlan": "images/prop5pic1small.jpg",
+        "floorPlan": "images/prop5pic10small.jpg",
         "mapCoordinates": {
           "lat": 51.4780,
           "lng": -0.0015
@@ -157,16 +157,16 @@
         "location": "Canary Wharf, London E14",
         "picture": "images/prop6pic1small.jpg",
         "images": [
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg",
-          "images/prop6pic1small.jpg"
+          "images/prop6pic2small.jpg",
+          "images/prop6pic3small.jpg",
+          "images/prop6pic4small.jpg",
+          "images/prop6pic5small.jpg",
+          "images/prop6pic6small.jpg",
+          "images/prop6pic7small.jpg",
+          "images/prop6pic8small.jpg",
+          "images/prop6pic9small.jpg"
         ],
-        "floorPlan": "images/prop6pic1small.jpg",
+        "floorPlan": "images/prop6pic10small.jpg",
         "mapCoordinates": {
           "lat": 51.5045,
           "lng": -0.0195

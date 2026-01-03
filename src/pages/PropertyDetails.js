@@ -24,8 +24,20 @@ const PropertyDetails = () => {
   // Find the property
   const property = propertiesData.properties.find(p => p.id === id);
 
+  // Combine main picture with images array, ensuring main picture is first
+  // Add leading slash for proper public folder path resolution
+  const propertyImages = property 
+    ? [property.picture, ...(property.images || [])]
+        .filter(Boolean)
+        .map(img => img.startsWith('/') ? img : `/${img}`)
+    : [];
+
   // State management
-  const [mainImage, setMainImage] = useState(property ? (property.images?.[0] || property.picture) : '');
+  const [mainImage, setMainImage] = useState(
+    property 
+      ? (property.picture ? (property.picture.startsWith('/') ? property.picture : `/${property.picture}`) : property.images?.[0] ? (property.images[0].startsWith('/') ? property.images[0] : `/${property.images[0]}`) : '')
+      : ''
+  );
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [favorites, setFavorites] = useState(
@@ -36,8 +48,9 @@ const PropertyDetails = () => {
 
   // Update main image when property changes
   useEffect(() => {
-    if (property) {
-      setMainImage(property.images?.[0] || property.picture);
+    if (property && propertyImages.length > 0) {
+      // Use the first image from the combined array (main picture)
+      setMainImage(propertyImages[0]);
     }
   }, [property]);
 
@@ -140,8 +153,8 @@ const PropertyDetails = () => {
 
   // Navigate lightbox
   const navigateLightbox = (direction) => {
-    if (!property?.images) return;
-    const totalImages = property.images.length;
+    if (!propertyImages.length) return;
+    const totalImages = propertyImages.length;
     if (direction === 'next') {
       setLightboxIndex((prev) => (prev + 1) % totalImages);
     } else {
@@ -170,8 +183,6 @@ const PropertyDetails = () => {
       </div>
     );
   }
-
-  const propertyImages = property.images || [property.picture];
 
   return (
     <div 
@@ -265,7 +276,7 @@ const PropertyDetails = () => {
                 <h3>Floor Plan</h3>
                 <div className="floor-plan-container">
                   <img 
-                    src={property.floorPlan || property.picture} 
+                    src={property.floorPlan ? (property.floorPlan.startsWith('/') ? property.floorPlan : `/${property.floorPlan}`) : (property.picture ? (property.picture.startsWith('/') ? property.picture : `/${property.picture}`) : '')} 
                     alt={`Floor plan for ${escapeHtml(property.location)}`}
                     className="floor-plan-image"
                   />
