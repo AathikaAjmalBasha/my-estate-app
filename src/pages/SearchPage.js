@@ -471,7 +471,7 @@ function SearchPage() {
                 <Link to={`/property/${prop.id}`} className="property-card-link">
                   <img 
                     src={prop.picture} 
-                    alt={`${prop.type} in ${prop.location}`}
+                    alt={`${escapeHtml(prop.type)} in ${escapeHtml(prop.location)}`}
                     onDragStart={(e) => handleDragStart(e, prop, false)}
                     onDragEnd={handleDragEnd}
                     draggable
@@ -479,8 +479,8 @@ function SearchPage() {
                 </Link>
                 <div className="card-content">
                   <h3>£{prop.price.toLocaleString()}</h3>
-                  <p className="property-location">{prop.location}</p>
-                  <p className="property-description">{prop.description}</p>
+                  <p className="property-location">{escapeHtml(prop.location)}</p>
+                  <p className="property-description">{escapeHtml(prop.description)}</p>
                   
                   <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
                     <Link to={`/property/${prop.id}`} style={{ flex: 1 }}>

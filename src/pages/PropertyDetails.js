@@ -265,7 +265,7 @@ const PropertyDetails = () => {
               <div className="tab-content">
                 <h3>Property Description</h3>
                 <p className="long-description">
-                  {property.longDescription || property.description}
+                  {escapeHtml(property.longDescription || property.description)}
                 </p>
               </div>
             </TabPanel>

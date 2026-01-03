@@ -2,6 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../index.css'; // Using your global CSS
 
+// HTML encoding function for security
+const escapeHtml = (text) => {
+  if (!text) return '';
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return String(text).replace(/[&<>"']/g, m => map[m]);
+};
+
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState(() => {
         // This runs immediately on load
@@ -54,12 +67,12 @@ const FavoritesPage = () => {
           {favorites.map(prop => (
             <div key={prop.id} className="property-card">
               <Link to={`/property/${prop.id}`} className="property-card-link">
-                <img src={prop.picture} alt={prop.type} />
+                <img src={prop.picture} alt={escapeHtml(prop.type)} />
               </Link>
               <div className="card-content">
                 <h3>£{prop.price.toLocaleString()}</h3>
-                <p className="property-location">{prop.location}</p>
-                {prop.description && <p className="property-description">{prop.description}</p>}
+                <p className="property-location">{escapeHtml(prop.location)}</p>
+                {prop.description && <p className="property-description">{escapeHtml(prop.description)}</p>}
                 
                 <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                   <Link to={`/property/${prop.id}`} style={{ flex: 1 }}>
