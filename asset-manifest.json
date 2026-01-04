@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/my-estate-app/static/css/main.5d948ad3.css",
+    "main.js": "/my-estate-app/static/js/main.a585b014.js",
+    "static/js/453.36cac265.chunk.js": "/my-estate-app/static/js/453.36cac265.chunk.js",
+    "index.html": "/my-estate-app/index.html",
+    "main.5d948ad3.css.map": "/my-estate-app/static/css/main.5d948ad3.css.map",
+    "main.a585b014.js.map": "/my-estate-app/static/js/main.a585b014.js.map",
+    "453.36cac265.chunk.js.map": "/my-estate-app/static/js/453.36cac265.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5d948ad3.css",
+    "static/js/main.a585b014.js"
+  ]
+}
