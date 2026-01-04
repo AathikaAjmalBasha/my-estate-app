@@ -18,6 +18,16 @@ const escapeHtml = (text) => {
   return String(text).replace(/[&<>"']/g, m => map[m]);
 };
 
+// Get image path with PUBLIC_URL for GitHub Pages compatibility
+const getImagePath = (img) => {
+  if (!img) return '';
+  const publicUrl = process.env.PUBLIC_URL || '';
+  if (img.startsWith('/')) {
+    return `${publicUrl}${img}`;
+  }
+  return `${publicUrl}/${img}`;
+};
+
 // Utility function to extract postcode area code (e.g., BR, NW, SE, W) from location string
 const extractPostcodeArea = (location) => {
   if (!location) return null;
@@ -470,7 +480,7 @@ function SearchPage() {
               <div key={prop.id} className="property-card">
                 <Link to={`/property/${prop.id}`} className="property-card-link">
                   <img 
-                    src={prop.picture} 
+                    src={getImagePath(prop.picture)} 
                     alt={`${escapeHtml(prop.type)} in ${escapeHtml(prop.location)}`}
                     onDragStart={(e) => handleDragStart(e, prop, false)}
                     onDragEnd={handleDragEnd}
@@ -543,7 +553,7 @@ function SearchPage() {
                 onDragEnd={handleDragEnd}
               >
                 <Link to={`/property/${fav.id}`} className="favorite-link">
-                  <img src={fav.picture} alt={escapeHtml(fav.location)} />
+                  <img src={getImagePath(fav.picture)} alt={escapeHtml(fav.location)} />
                   <div className="favorite-info">
                     <strong>£{fav.price.toLocaleString()}</strong>
                     <p>{escapeHtml(fav.location)}</p>

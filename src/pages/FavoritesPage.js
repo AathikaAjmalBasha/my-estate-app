@@ -15,6 +15,16 @@ const escapeHtml = (text) => {
   return String(text).replace(/[&<>"']/g, m => map[m]);
 };
 
+// Get image path with PUBLIC_URL for GitHub Pages compatibility
+const getImagePath = (img) => {
+  if (!img) return '';
+  const publicUrl = process.env.PUBLIC_URL || '';
+  if (img.startsWith('/')) {
+    return `${publicUrl}${img}`;
+  }
+  return `${publicUrl}/${img}`;
+};
+
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState(() => {
         // This runs immediately on load
@@ -67,7 +77,7 @@ const FavoritesPage = () => {
           {favorites.map(prop => (
             <div key={prop.id} className="property-card">
               <Link to={`/property/${prop.id}`} className="property-card-link">
-                <img src={prop.picture} alt={escapeHtml(prop.type)} />
+                <img src={getImagePath(prop.picture)} alt={escapeHtml(prop.type)} />
               </Link>
               <div className="card-content">
                 <h3>£{prop.price.toLocaleString()}</h3>

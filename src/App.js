@@ -6,8 +6,11 @@ import PropertyDetails from './pages/PropertyDetails';
 import FavoritesPage from './pages/FavoritesPage';
 
 function App() {
+  // Set basename for GitHub Pages deployment
+  const basename = process.env.PUBLIC_URL || '';
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <Navbar /> 
       <Routes>
         <Route path="/" element={<SearchPage />} />

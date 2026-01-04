@@ -25,17 +25,25 @@ const PropertyDetails = () => {
   const property = propertiesData.properties.find(p => p.id === id);
 
   // Combine main picture with images array, ensuring main picture is first
+  // Use process.env.PUBLIC_URL for GitHub Pages compatibility
+  const getImagePath = (img) => {
+    if (!img) return '';
+    const publicUrl = process.env.PUBLIC_URL || '';
+    if (img.startsWith('/')) {
+      return `${publicUrl}${img}`;
+    }
+    return `${publicUrl}/${img}`;
+  };
+  
   const propertyImages = property 
     ? [property.picture, ...(property.images || [])]
         .filter(Boolean)
-        .map(img => img.startsWith('/') ? img : `/${img}`)
+        .map(getImagePath)
     : [];
 
   // State management
   const [mainImage, setMainImage] = useState(
-    property 
-      ? (property.picture ? (property.picture.startsWith('/') ? property.picture : `/${property.picture}`) : property.images?.[0] ? (property.images[0].startsWith('/') ? property.images[0] : `/${property.images[0]}`) : '')
-      : ''
+    property ? getImagePath(property.picture || property.images?.[0] || '') : ''
   );
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -275,7 +283,7 @@ const PropertyDetails = () => {
                 <h3>Floor Plan</h3>
                 <div className="floor-plan-container">
                   <img 
-                    src={property.floorPlan ? (property.floorPlan.startsWith('/') ? property.floorPlan : `/${property.floorPlan}`) : (property.picture ? (property.picture.startsWith('/') ? property.picture : `/${property.picture}`) : '')} 
+                    src={getImagePath(property.floorPlan || property.picture || '')} 
                     alt={`Floor plan for ${escapeHtml(property.location)}`}
                     className="floor-plan-image"
                   />
@@ -350,7 +358,7 @@ const PropertyDetails = () => {
                 onDragEnd={handleDragEnd}
               >
                 <Link to={`/property/${fav.id}`} className="favorite-link">
-                  <img src={fav.picture ? (fav.picture.startsWith('/') ? fav.picture : `/${fav.picture}`) : ''} alt={escapeHtml(fav.location)} />
+                  <img src={getImagePath(fav.picture)} alt={escapeHtml(fav.location)} />
                   <div className="favorite-info">
                     <strong>£{fav.price.toLocaleString()}</strong>
                     <p>{escapeHtml(fav.location)}</p>
